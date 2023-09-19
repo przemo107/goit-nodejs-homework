@@ -46,7 +46,9 @@ router.post('/', async (req, res, next) => {
     Joi.attempt(req.body, addContactSchema);
 
     const newContact = await addContact(req.body);
-    res.status(201).json(newContact);
+    res
+      .status(201)
+      .json({ message: 'Kontakt został dodany', contact: newContact });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
